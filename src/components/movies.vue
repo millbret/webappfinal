@@ -23,7 +23,7 @@ axios({
   .then((response: AxiosResponse) => {
     const responseData = response.data; 
     console.log(response.data);
-    responseData.results.forEach(movie => {
+    responseData.results.forEach((movie: { title: any; }) => {
       console.log(movie.title)
     })
   })
