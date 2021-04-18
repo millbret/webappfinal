@@ -1,5 +1,25 @@
 <template>
-  <div id="app"></div>
+  <div id="movies">
+    <table class="expense">
+            <h1>World Statistics</h1>
+            
+            <tbody>
+                <tr>
+                    <th>Movie Name</th>
+                    <th>Synopsis</th>
+                    <th>Movie Poster</th>
+                    <th>Movie ID</th>
+                    <th>Rating</th>
+                </tr>
+                <tr v-for="(z, pos) in popularMovies" :key="pos">
+                    <td>{{z.name}}</td>
+                    <td>{{z.synopsis}}</td>
+                    
+                    
+                </tr>
+            </tbody>
+      </table>
+  </div>
 </template>
 
 <script lang="ts">
@@ -8,6 +28,8 @@ import axios, {AxiosResponse} from "axios";
 let searchInput = "avengers"
 @Component
 export default class movies extends Vue {
+
+private popularMovies: any [] = [];
 
 mounted(): void {
 axios({
@@ -23,8 +45,17 @@ axios({
   .then((response: AxiosResponse) => {
     const responseData = response.data; 
     console.log(response.data);
-    responseData.results.forEach((movie: { title: any; }) => {
+    responseData.results.forEach((movie: any) => {
+      this.popularMovies.push({
+        mID: movie.id,
+        name: movie.title,
+        synopsis: movie.overview,
+        image: movie.backdrop_path,
+
+
+      })
       console.log(movie.title)
+      console.log(movie.overview)
     })
   })
   axios({
@@ -39,7 +70,7 @@ axios({
     })
       .then((response: AxiosResponse) => {
         const responseData = response.data; 
-        console.log(response.data);
+        console.log(responseData.results[0].original_title);
     })
 }
 }
