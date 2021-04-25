@@ -2,6 +2,7 @@
   <div id="app">
     <Search></Search>
     <movies></movies>
+    <login></login>
   </div>
 </template>
 
@@ -10,11 +11,13 @@ import { Component, Vue } from 'vue-property-decorator';
 import axios, {AxiosResponse} from "axios";
 import {FirebaseFirestore} from "@firebase/firestore-types"
 import movies from './components/movies.vue';
-import Search from './components/Search.vue';
+// import Search from './components/Search.vue';
+import login from './components/login.vue';
 @Component({
   components: {
     movies,
-    Search,
+    login,
+    // Search,
   },
 })
 export default class App extends Vue {

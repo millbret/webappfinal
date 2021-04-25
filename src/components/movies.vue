@@ -17,6 +17,8 @@
           <td>{{ z.name }}</td>
           <td>{{ z.synopsis }}</td>
           <td><img v-bind:src="z.poster" /></td>
+          <td>{{z.mID}}</td>
+          <td>{{z.rating}}</td>
         </tr>
       </tbody>
     </table>
@@ -53,6 +55,7 @@ export default class movies extends Vue {
           synopsis: movie.overview,
           image: this.imgLink + movie.backdrop_path,
           poster: this.imgLink + movie.poster_path,
+          rating: movie.vote_average,
         });
         console.log(movie.title);
         console.log(movie.overview);
@@ -78,6 +81,7 @@ export default class movies extends Vue {
           synopsis: movie.overview,
           image: this.imgLink + movie.backdrop_path,
           poster: this.imgLink + movie.poster_path,
+          rating: movie.vote_average,
         });
       });
     });
