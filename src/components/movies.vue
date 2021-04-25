@@ -1,8 +1,10 @@
 <template>
   <div id="movies">
     <table class="expense">
-      <h1>World Statistics</h1>
-
+      <div class="search">
+        <input type="text" v-model="searchInput" />
+        <button @click="search">Search</button>
+      </div>
       <tbody>
         <tr>
           <th>Movie Name</th>
@@ -11,9 +13,9 @@
           <th>Movie ID</th>
           <th>Rating</th>
         </tr>
-        <tr v-for="(z, pos) in popularMovies" :key="pos">
+        <tr v-for="(z, pos) in displayMovies" :key="pos">
           <td>{{ z.name }}</td>
-          <td> {{ z.synopsis }}</td>
+          <td>{{ z.synopsis }}</td>
           <td><img v-bind:src="z.poster" /></td>
         </tr>
       </tbody>
@@ -24,12 +26,15 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import axios, { AxiosResponse } from "axios";
-let searchInput = "avengers";
 @Component
 export default class movies extends Vue {
   private popularMovies: any[] = [];
+  private searchMovies: any[] = [];
+  private displayMovies: any[] = [];
   private imgLink = "https://image.tmdb.org/t/p/w1280";
+  private searchInput = "";
   mounted(): void {
+    this.displayMovies = this.popularMovies;
     axios({
       method: "GET",
       url:
@@ -53,18 +58,33 @@ export default class movies extends Vue {
         console.log(movie.overview);
       });
     });
+  }
+  search(): void {
     axios({
       method: "GET",
       url:
         "https://api.themoviedb.org/3/search/movie?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&page=1&include_adult=false",
       headers: {},
       params: {
-        query: searchInput,
+        query: this.searchInput,
       },
     }).then((response: AxiosResponse) => {
       const responseData = response.data;
-      console.log(responseData.results[0].original_title);
+      console.log(responseData.results);
+      responseData.results.forEach((movie: any) => {
+        this.searchMovies.push({
+          mID: movie.id,
+          name: movie.title,
+          synopsis: movie.overview,
+          image: this.imgLink + movie.backdrop_path,
+          poster: this.imgLink + movie.poster_path,
+        });
+      });
     });
+    console.log(this.searchMovies);
+    console.log(this.displayMovies);
+    this.displayMovies.splice(0, this.displayMovies.length);
+    this.displayMovies = this.searchMovies;
   }
 }
 </script>
@@ -81,4 +101,5 @@ export default class movies extends Vue {
 img {
   max-width: 200px;
 }
+
 </style>
