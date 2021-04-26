@@ -38,7 +38,7 @@ export default class Details extends Vue {
     console.log(this.selectedMovie);
     this.uid = this.$appAuth.currentUser?.uid ?? "none";
     this.$appDB
-        .collection(`reviews/${this.selectedMovie}`)
+        .collection(`reviews/${this.selectedMovie}/reviews`)
         .onSnapshot((qs: QuerySnapshot) => {
         this.Reviews.splice(0);  // remove old data
             qs.forEach((qds: QueryDocumentSnapshot) => {
@@ -74,7 +74,6 @@ export default class Details extends Vue {
         });
         console.log(movie.title);
         console.log(movie.overview);
-        console.log(this.selectedMovie);
         this.mID = movie.id;
         this.name = movie.title;
       });
@@ -85,11 +84,11 @@ export default class Details extends Vue {
   saveReview(): void{
 
     this.$appDB
-        .collection(`users/${this.selectedMovie}/reviews`)
+        .collection(`users/${this.uid}/reviews`)
         .add({name: this.name, mID: this.selectedMovie, review: this.review})
 
     this.$appDB
-     .collection(`reviews/${this.mID}/reviews`)
+     .collection(`reviews/${this.selectedMovie}/reviews`)
     .add({user: this.uid, review: this.review})
   }
 
