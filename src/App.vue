@@ -12,11 +12,13 @@ import movies from './components/movies.vue';
 // import Search from './components/Search.vue';
 import login from './components/login.vue';
 import Details from './components/Details.vue';
+import Profile  from './components/profile.vue'
 @Component({
   components: {
     movies,
     login,
     Details,
+    Profile,
     // Search,
   },
 })

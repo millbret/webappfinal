@@ -44,7 +44,7 @@ import { FirebaseAuth, UserCredential} from "@firebase/auth-types";
 import "firebase/auth";
 
 @Component
-export default class BudgetCategory extends Vue {
+export default class Profile extends Vue {
 
     private userInfo: any[] = [];
     readonly $appDB!: FirebaseFirestore;
