@@ -16,7 +16,7 @@
           <th>Rating</th>
         </tr>
         <tr v-for="(z, pos) in displayMovies" :key="pos">
-          <router-link :to="{name: 'Details', params: {id: z} }"> <td>{{ z.name }}</td> </router-link>
+          <router-link :to="{name: 'Details', params: {id: z.mID} }"> <td>{{ z.name }}</td> </router-link>
           <td>{{ z.synopsis }}</td>
           <td><img v-bind:src="z.poster" /></td>
           <td>{{z.mID}}</td>
@@ -73,8 +73,6 @@ export default class movies extends Vue {
           poster: this.imgLink + movie.poster_path,
           rating: movie.vote_average,
         });
-        console.log(movie.title);
-        console.log(movie.overview);
       });
     });
   }
@@ -109,7 +107,7 @@ export default class movies extends Vue {
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -122,4 +120,17 @@ img {
   max-width: 200px;
 }
 
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+td:first-child {
+vertical-align: bottom;
+}
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: center;
+}
 </style>
