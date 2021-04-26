@@ -34,7 +34,7 @@
       <button id="Submit Review" v-on:click="saveReview">Submit Review</button>
       <ul style="list-style-type: none">
         <li v-for="(z, pos) in Reviews" :key="pos">
-          <p>{{ z.review }}</p>
+          <p style="text-align: left;">{{ z.review }}</p>
         </li>
       </ul>
     </div>

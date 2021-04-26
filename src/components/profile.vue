@@ -12,7 +12,7 @@
         </tr>
         <tr v-for="(z, pos) in userInfo" :key="pos">
           <td>{{ z.name }}</td>
-          <td>{{z.review}}</td>
+          <td><p style="text-align: left;">{{z.review}}</p></td>
           
         </tr>
       </tbody>
