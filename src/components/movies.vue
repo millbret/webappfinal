@@ -1,5 +1,7 @@
 <template>
   <div id="movies">
+    <router-link to="/login" replace v-if="status == 'not signed in' ">Login</router-link>
+    <router-link to="/profile" replace v-else-if="status != 'not signed in' ">Profile</router-link>
     <table class="expense">
       <div class="search">
         <input type="text" v-model="searchInput" />
@@ -28,6 +30,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import axios, { AxiosResponse } from "axios";
+import {FirebaseFirestore} from "@firebase/firestore-types";
+import {QueryDocumentSnapshot, QuerySnapshot} from "@firebase/firestore-types";
+import { FirebaseAuth, UserCredential} from "@firebase/auth-types";
+import "firebase/auth";
 @Component
 export default class movies extends Vue {
   private popularMovies: any[] = [];
@@ -35,7 +41,16 @@ export default class movies extends Vue {
   private displayMovies: any[] = [];
   private imgLink = "https://image.tmdb.org/t/p/w1280";
   private searchInput = "";
+  readonly $appDB!: FirebaseFirestore;
+  readonly $appAuth!: FirebaseAuth;
+  private uid = "none";
+  private status = "not signed in";
+
   mounted(): void {
+    this.uid = this.$appAuth.currentUser?.uid ?? "none";
+    if(this.uid != "none"){
+        this.status = "Signed In";
+    }
     this.displayMovies = this.popularMovies;
     axios({
       method: "GET",

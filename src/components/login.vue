@@ -53,7 +53,7 @@ export default class AppLogin extends Vue {
             .createUserWithEmailAndPassword(this.userEmail, this.userPassword)
             .then((u: UserCredential) => {
                 this.showMessage(`User create UID ${u.user?.uid}`);
-                
+                this.$router.push({path: "/movies"})
             })
             .catch((err: any) => {
                 this.showMessage(`Unable to create account ${err}`);
@@ -65,7 +65,7 @@ export default class AppLogin extends Vue {
             .signInWithEmailAndPassword(this.userEmail, this.userPassword)
             .then((u: UserCredential) => {
                 this.showMessage(`Login successful UID ${u.user?.uid}`);
-                
+                this.$router.push({path: "/profile"})
             })
             .catch((err: any) => {
                 this.showMessage(`Unable to login ${err}`);
