@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 const myRoutes: Array<RouteConfig> = [
   {
     name: "Login",
-    path: "/",
+    path: "/login",
     component: login,
   },
   {
@@ -25,8 +25,8 @@ const myRoutes: Array<RouteConfig> = [
   {
     name: "Details",
     path: "/Details",
-    component: Details
-  }
+    component: Details,
+  },
 ];
 
 export const AppRouter = new VueRouter({ 
