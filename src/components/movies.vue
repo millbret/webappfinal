@@ -16,7 +16,7 @@
           <th>Rating</th>
         </tr>
         <tr v-for="(z, pos) in displayMovies" :key="pos">
-          <router-link :to="{name: 'Details', params: {id: z.mID} }"> <td>{{ z.name }}</td> </router-link>
+          <router-link :to="{name: 'Details', params: {id: z} }"> <td>{{ z.name }}</td> </router-link>
           <td>{{ z.synopsis }}</td>
           <td><img v-bind:src="z.poster" /></td>
           <td>{{z.mID}}</td>
