@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 import login from "./components/login.vue";
 import movies from './components/movies.vue';
 import profile from './components/profile.vue';
+import Details from './components/Details.vue';
 Vue.use(VueRouter);
 
 const myRoutes: Array<RouteConfig> = [
@@ -21,6 +22,11 @@ const myRoutes: Array<RouteConfig> = [
     path: "/movies",
     component: movies,
   },
+  {
+    name: "Details",
+    path: "/Details",
+    component: Details
+  }
 ];
 
 export const AppRouter = new VueRouter({ 

@@ -11,10 +11,12 @@ import {FirebaseFirestore} from "@firebase/firestore-types"
 import movies from './components/movies.vue';
 // import Search from './components/Search.vue';
 import login from './components/login.vue';
+import Details from './components/Details.vue';
 @Component({
   components: {
     movies,
     login,
+    Details,
     // Search,
   },
 })

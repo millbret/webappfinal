@@ -16,7 +16,7 @@
           <th>Rating</th>
         </tr>
         <tr v-for="(z, pos) in displayMovies" :key="pos">
-          <td>{{ z.name }}</td>
+         <router-link to="/details" replace> <td @click="details(z)">{{ z.name }}</td> </router-link>
           <td>{{ z.synopsis }}</td>
           <td><img v-bind:src="z.poster" /></td>
           <td>{{z.mID}}</td>
@@ -41,6 +41,7 @@ export default class movies extends Vue {
   private displayMovies: any[] = [];
   private imgLink = "https://image.tmdb.org/t/p/w1280";
   private searchInput = "";
+  private movieDetails: any[] = [];
   readonly $appDB!: FirebaseFirestore;
   readonly $appAuth!: FirebaseAuth;
   private uid = "none";
@@ -76,6 +77,10 @@ export default class movies extends Vue {
         console.log(movie.overview);
       });
     });
+  }
+  details(z): void {
+    this.movieDetails = z
+    console.log(this.movieDetails);
   }
   search(): void {
     axios({
