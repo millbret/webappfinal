@@ -1,6 +1,6 @@
 <template>
   <div id="movies">
-    <router-link to="/login" replace v-if="status == 'not signed in' ">Login</router-link>
+        <router-link to="/login" replace v-if="status == 'not signed in' ">Login</router-link>
     <router-link to="/profile" replace v-else-if="status != 'not signed in' ">Profile</router-link>
     <table class="expense">
       <div class="search">
@@ -133,4 +133,11 @@ th {
   color: #fff;
   text-align: center;
 }
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+
+}
+
 </style>

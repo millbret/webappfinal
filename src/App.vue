@@ -6,7 +6,7 @@
         <router-link to="/login" replace v-if="status == 'not signed in' "><p>Log In</p></router-link>
         <router-link to="/profile" replace v-else-if="status != 'not signed in' "><p>Profile</p></router-link> 
         <router-link to="/movies"><p>Movies</p></router-link> 
-        <p v-on:click="doLogout" v-if=" status == 'Signed In' ">Log out</p>
+        <p v-on:click="doLogout">Log out</p>
         
       </div>
 </div>
